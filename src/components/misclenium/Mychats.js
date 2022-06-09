@@ -11,13 +11,23 @@ function Mychats({fetchAgain}) {
   const [loggedUser, setLoggedUser]=useState([]);
   const {selectedChat, setSelectedChat, user,chats, setChats}=ChatState();
 
+
+  useEffect(()=>{
+    setLoggedUser(JSON.parse(localStorage.getItem('userInfo')));
+    fetchChats();
+  },[fetchAgain])
+
+
+
   const toast=useToast();
   
   const fetchChats = async () =>{
+    const usertoken=JSON.parse(localStorage.getItem('userInfo')).token
+    console.log(usertoken)
     try{
       const obj={
         headers:{
-          Authorization:`Bearer ${user.token}`
+          Authorization:`Bearer ${usertoken}`
         }
       }
 
@@ -36,10 +46,6 @@ function Mychats({fetchAgain}) {
     }
   }
 
-  useEffect(()=>{
-    setLoggedUser(JSON.parse(localStorage.getItem('userInfo')));
-    fetchChats();
-  },[fetchAgain])
 
   return (
     <Box d={{base:selectedChat?'none':"flex", md:'flex'}}

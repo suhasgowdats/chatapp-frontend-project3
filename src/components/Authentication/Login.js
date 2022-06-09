@@ -37,16 +37,14 @@ function Login() {
             // console.log(email)
             const obj={
                 method:"POST",
+                data:{email,password},
                 headers:{
                     'Content-type':'Application/json'
-                },
-                data:{email,password}
+                }
             }
 
             const {data}=await axios("https://chatapp-demouse-2022.herokuapp.com/api/user/login",obj)
             // console.log(data);
-            localStorage.setItem("userInfo",JSON.stringify(data))
-            setLogin(false);
             toast({
                 title: 'Login successfull',
                 status: 'success',
@@ -54,6 +52,8 @@ function Login() {
                 isClosable: true,
                 position:'bottom'
             }); 
+            localStorage.setItem("userInfo",JSON.stringify(data))
+            setLogin(false);
             nav('/chats');    
             
         }catch(error){
