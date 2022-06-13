@@ -7,9 +7,9 @@ import { IconButton } from '@chakra-ui/react'
 
 
 
-function ProfileModel({user,  children}) {
-
-
+function ProfileModel({  children}) {
+  
+  const user=JSON.parse(localStorage.getItem('userInfo'))
 
     const { isOpen, onOpen, onClose } = useDisclosure()
   return (

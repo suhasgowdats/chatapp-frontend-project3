@@ -112,6 +112,8 @@ function SideDrawer() {
         }        
     }
 
+    const user1=JSON.parse(localStorage.getItem('userInfo'))
+
     return (
         <>
             <Box d='flex' justifyContent='space-between' alignItems='center' bg='white' w='100%' p='5px 10px 5px 10px' borderWidth='5px' >
@@ -143,7 +145,7 @@ function SideDrawer() {
                     </Menu>
                     <Menu>
                         <MenuButton as={Button}  rightIcon={<ChevronDownIcon/>}> 
-                        <Avatar size='sm' cursor='pointer' name={user.name} src={user.pic} />                          
+                        <Avatar size='sm' cursor='pointer' name={user1.name} src={user1.pic} />                          
                         </MenuButton>
                         <MenuList>
                             <ProfileModel user={user}>
